@@ -1,0 +1,20 @@
+<%= form_tag("/security/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<h1>Books</h1>
+<% if !@books.empty? %>
+  <% @books.each do |book| %>
+    <% if book.title != nil %>
+      <h3><%= book.title %></h3>
+    <% end %>
+    <% if book.description != nil %>
+      <p><%= book.description %></p>
+    <% end %>
+    <% if book.url != nil %>
+      <img src="<%=book.url%>" alt="" height="42" width="42">
+    <% end %>
+  <% end %>
+  <%= will_paginate @books %>
+<% end %>
